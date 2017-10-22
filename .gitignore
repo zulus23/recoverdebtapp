@@ -7,5 +7,5 @@ out
 *.iws
 .env
 .DS_Store
-gradle/
+
 
