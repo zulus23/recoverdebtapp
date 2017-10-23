@@ -1,23 +1,29 @@
 package ru.zhukov.recoverdebt.config;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.dialect.SpringStandardDialect;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.StandardTemplateModeHandlers;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 @Configuration
 @EnableWebMvc
-public class WebConfig  extends WebMvcConfigurerAdapter{
+public class WebConfig  extends WebMvcConfigurerAdapter {
 
 
-    @Autowired
-    private ThymeleafProperties thymeleafProperties;
+
 
 
     @Override
@@ -34,11 +40,10 @@ public class WebConfig  extends WebMvcConfigurerAdapter{
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML5");
-        resolver.setCacheable(thymeleafProperties.isCache());
+        resolver.setCacheable(true);
         resolver.setOrder(1);
 
         return resolver;
@@ -54,11 +59,13 @@ public class WebConfig  extends WebMvcConfigurerAdapter{
     }
 
     @Bean
-    public ThymeleafViewResolver thymeleafViewResolver() {
+    public ViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
         return resolver;
     }
+
+
     /*@Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
