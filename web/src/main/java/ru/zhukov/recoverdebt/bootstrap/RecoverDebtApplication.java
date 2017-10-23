@@ -3,7 +3,7 @@ package ru.zhukov.recoverdebt.bootstrap;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"ru.zhukov.recoverdebt"})
 public class RecoverDebtApplication {
 
     public static void main(String[] args) {
