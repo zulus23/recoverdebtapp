@@ -2,7 +2,7 @@ package ru.zhukov.recoverdebt.domain;
 
 
 
-public class Address {
+public final class Address {
     private Long id;
     private String index;
     private String country;

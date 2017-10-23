@@ -8,7 +8,7 @@ import java.util.List;
  * @author Zhukov
  *
  * */
-public class Borrower {
+public final class Borrower {
 
     private String name;
 
