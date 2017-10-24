@@ -11,7 +11,7 @@ buildscript{
 
 }
 
-apply plugin: 'war'
+apply plugin :'war'
 apply plugin : 'org.springframework.boot'
 
 
@@ -19,4 +19,5 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }

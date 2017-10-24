@@ -8,8 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class HelloApp {
 
     @RequestMapping(value = "/")
-    public ModelAndView  runFirst(){
-        return new ModelAndView("index");
+    public String  runFirst(){
+        int p = 0;
+        return "index";
     }
 
 }
