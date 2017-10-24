@@ -41,7 +41,7 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML5");
-        resolver.setCacheable(true);
+        resolver.setCacheable(false);
         resolver.setOrder(1);
 
         return resolver;
