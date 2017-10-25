@@ -16,8 +16,13 @@ apply plugin : 'org.springframework.boot'
 
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-security")
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+   /* compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")*/
+    compile("org.thymeleaf:thymeleaf-spring4:3.0.8.RELEASE")
+    compile("org.thymeleaf:thymeleaf:3.0.8.RELEASE")
+    compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE")
+    compile("org.webjars:bootstrap:3.2.0")
+    compile("org.webjars:webjars-locator:0.15")
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }

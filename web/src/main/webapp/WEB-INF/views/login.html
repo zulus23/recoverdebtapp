@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
+<head >
+    <meta http-equiv="Content-Type" content="application/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Please Login</title>
+    <link rel="short icon" href="resources/images/favicon.png"/>
+    <link rel="stylesheet" href="resources/css/login.css"/>
+    <link rel="stylesheet" href="resources/css/distinctive.css"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
+
+</head>
+<body >
+<div id ="login" th:fragment="content">
+    <form name="f" class="form-vertical well well-raised clearfix" th:action="@{/login}" method="post">
+        <fieldset>
+            <legend>Please Login</legend>
+            <!-- <div th:if="${param.error}" class="alert alert-error">
+                 Invalid username and password.
+             </div>-->
+            <!--<div th:if="${param.logout}" class="alert alert-success">
+                You have been logged out.
+            </div>-->
+            <h1 />
+            <div class="control-group">
+                <label for="username" class="control-label" th:text="#{login.username}"></label>
+                <div class="controls">
+                    <input type="text" id="username" name="username" class="input-full"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="password" class="control-label" th:text="#{login.password}"></label>
+                <div class="controls">
+                    <input type="password" id="password" name="password" class="input-full"/>
+                </div>
+            </div>
+            <div class="btn btn-primary btn-large pull-right">
+                <button type="submit" class="btn">Вход</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script th:src="@{webjars/jquery/1.11.1/jquery.min.js}"/>
+<script th:src="@{webjars/bootstrap/3.2.0/js/bootstrap.min.js}"/>
+</body>
+</html>
