@@ -22,9 +22,9 @@
             <div th:if="${param.error}" class="alert alert-danger" role="alert">
                  Неверный пароль или пользователь.
              </div>
-            <!--<div th:if="${param.logout}" class="alert alert-success">
-                You have been logged out.
-            </div>-->
+            <div th:if="${param.logout}" class="alert alert-success">
+                  Вы вышли из системы
+            </div>
             <h1 />
             <div class="control-group">
                 <label for="username" class="control-label" th:text="#{login.username}"></label>
@@ -41,6 +41,7 @@
             <div class="btn btn-primary btn-large pull-right">
                 <button type="submit" class="btn">Вход</button>
             </div>
+
         </fieldset>
     </form>
 </div>

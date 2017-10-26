@@ -14,31 +14,42 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/webjars/**").permitAll();
         http.authorizeRequests().antMatchers("/images/**").permitAll();
         http.authorizeRequests().antMatchers("/resources/**").permitAll();
+        /*http.logout().logoutUrl("/logout")
+                 .logoutSuccessUrl("/login")
+                 .invalidateHttpSession(true)
+                 .clearAuthentication(true)
+                 .deleteCookies("JSESSIONID")
+                 .and();*/
         http.authorizeRequests()
 
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/",false)
                 .permitAll()
                 .and()
-                .logout()
-                   .logoutSuccessUrl("/")
-                   .invalidateHttpSession(true)
-                   //.deleteCookies(cookieNamesToClear)
-                .permitAll();
+
 
         ;
     }
 
 
-    @Override
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth)
+            throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("user").password("1").roles("USER")
+                .and()
+                .withUser("admin").password("2").roles("USER", "ADMIN");
+    }
+    /*@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
                 .withUser("admin").password("1").roles("ADMIN").and()
                 .withUser("user").password("demo").roles("USER").and()               ;
-    }
+    }*/
 
 
 }
