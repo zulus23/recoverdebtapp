@@ -22,7 +22,9 @@ dependencies {
     compile("org.thymeleaf:thymeleaf-spring4:3.0.8.RELEASE")
     compile("org.thymeleaf:thymeleaf:3.0.8.RELEASE")
     compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE")
-    compile("org.webjars:bootstrap:3.2.0")
+    compile("org.webjars:bootstrap:4.0.0-beta-1")
+
+    compile("org.webjars:jquery:1.12.3")
     compile("org.webjars:webjars-locator:0.15")
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }

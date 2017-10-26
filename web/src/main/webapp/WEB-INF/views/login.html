@@ -10,17 +10,18 @@
     <link rel="short icon" href="resources/images/favicon.png"/>
     <link rel="stylesheet" href="resources/css/login.css"/>
     <link rel="stylesheet" href="resources/css/distinctive.css"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-beta-1/css/bootstrap.min.css}"/>
+
 
 </head>
 <body >
 <div id ="login" th:fragment="content">
     <form name="f" class="form-vertical well well-raised clearfix" th:action="@{/login}" method="post">
         <fieldset>
-            <legend>Please Login</legend>
-            <!-- <div th:if="${param.error}" class="alert alert-error">
-                 Invalid username and password.
-             </div>-->
+            <legend>Вход в систему</legend>
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                 Неверный пароль или пользователь.
+             </div>
             <!--<div th:if="${param.logout}" class="alert alert-success">
                 You have been logged out.
             </div>-->
@@ -43,7 +44,7 @@
         </fieldset>
     </form>
 </div>
-<script th:src="@{webjars/jquery/1.11.1/jquery.min.js}"/>
-<script th:src="@{webjars/bootstrap/3.2.0/js/bootstrap.min.js}"/>
+<script th:src="@{webjars/jquery/1.12.3/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{webjars/bootstrap/4.0.0-beta-1/js/bootstrap.min.js}" type="text/javascript"></script>
 </body>
 </html>

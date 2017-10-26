@@ -4,17 +4,59 @@
     <title th:text="#{view.index.title}">Управление взысканиями</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="short icon" href="resources/images/favicon.png"/>
-    <link rel="stylesheet" href="resources/css/login.css"/>
-    <link rel="stylesheet" href="resources/css/distinctive.css"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
+    <!--<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>-->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-beta-1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{resources/css/kendo/kendo.common.min.css}"/>
+    <link rel="stylesheet" th:href="@{resources/css/kendo/kendo.common-bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{resources/css/kendo/kendo.common-bootstrap.core.min.css}"/>
+    <link rel="stylesheet" th:href="@{resources/css/kendo/kendo.default.min.css}"/>
+    <link rel="stylesheet" th:href="@{resources/css/distinctive.css}"/>
+
+
+
+    <script th:src="@{webjars/jquery/1.12.3/jquery.min.js}" type="text/javascript"></script>
+    <!--<script th:src="@{webjars/bootstrap/3.2.0/js/bootstrap.min.js}" type="text/javascript"></script>-->
+    <script th:src="@{resources/js/popper.min.js}" type="text/javascript"></script>
+    <script th:src="@{webjars/bootstrap/4.0.0-beta-1/js/bootstrap.min.js}" type="text/javascript"></script>
+    <script th:src="@{resources/js/kendo.all.min.js}" type="text/javascript"></script>
+    <script th:src="@{resources/js/kendo.culture.ru-RU.min.js}" type="text/javascript"></script>
+    <script th:src="@{resources/js/kendo.messages.ru-RU.min.js}" type="text/javascript"></script>
+    <script th:src="@{resources/js/jszip.min.js}" type="text/javascript"></script>
+
 </head>
 
 <body>
    <div th:replace="fragments/header :: header">&nbsp;</div>
-   <div sec:authorize="isAuthenticated()">
-       Logged user: <span sec:authentication="name">Bob</span> |
-       Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
-   </div>
+
+   <div id="grid" class="container" style="margin-top: 200px"></div>
+
+
+   <script>
+
+       $(document).ready(function(){
+           $("#grid").kendoGrid({
+               columns: [{
+                   field: "FirstName",
+                   title: "First Name"
+               },
+                   {
+                       field: "LastName",
+                       title: "Last Name"
+                   }],
+               dataSource: {
+                   data: [{
+                       FirstName: "Joe",
+                       LastName: "Smith"
+                   },
+                       {
+                           FirstName: "Jane",
+                           LastName: "Smith"
+                       }]
+               }
+           });
+       });
+
+   </script>
 
 
 </body>
