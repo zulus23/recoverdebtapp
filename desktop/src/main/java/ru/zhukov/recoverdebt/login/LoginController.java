@@ -80,7 +80,7 @@ public class LoginController  implements Initializable{
     private void eventLoginAction(ActionEvent event){
 
          masker.setVisible(true);
-      //  applicationController.authentication(tUserName.getText(),tPassword.getText(),currenSelect);
+        applicationController.authentication(tUserName.getText(),tPassword.getText());
     }
 
 
