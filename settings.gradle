@@ -1,4 +1,5 @@
 rootProject.name = 'recoverdebt'
 include 'shared'
 include 'web'
+include 'desktop'
 

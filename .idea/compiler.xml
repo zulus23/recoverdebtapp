@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
+      <module name="desktop_main" target="1.8" />
+      <module name="desktop_test" target="1.8" />
       <module name="recoverdebt_main" target="1.8" />
       <module name="recoverdebt_test" target="1.8" />
       <module name="shared_main" target="1.8" />
