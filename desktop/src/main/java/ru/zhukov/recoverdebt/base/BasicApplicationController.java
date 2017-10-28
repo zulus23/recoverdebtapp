@@ -1,43 +1,26 @@
 package ru.zhukov.recoverdebt.base;
 
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyDoubleProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.concurrent.Task;
-import javafx.event.*;
-import javafx.event.Event;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
-import javafx.util.StringConverter;
 import org.controlsfx.control.MaskerPane;
 import ru.zhukov.recoverdebt.action.Action;
+import ru.zhukov.recoverdebt.calendar.InvestigatorCalendarController;
+import ru.zhukov.recoverdebt.debt.DebtController;
 
-
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 /**
@@ -133,6 +116,7 @@ public class BasicApplicationController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         this.resourceBundle = resources;
+        miNewDocument.setOnAction(this::OpenCalendar);
         miExit.setOnAction(Action::exit);
         miExit.setAccelerator(KeyCombination.keyCombination("Ctrl+F4"));
         //miNewDocument.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/assests/image16/document.png").toExternalForm())));
@@ -147,9 +131,71 @@ public class BasicApplicationController implements Initializable {
        // tToolBar.getItems().add(new Separator(Orientation.VERTICAL));
 
 
+            shoListDebt();
 
 
 
+    }
+
+    private void OpenCalendar(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(BasicApplicationController.class.getResource("/ru/zhukov/recoverdebt/calendar/InvestigatorCalendarView.fxml"));
+            //fxmlAppLoader.setResources(ResourceBundle.getBundle("Application", new Locale("ru","RU")));
+            InvestigatorCalendarController calendarController = new InvestigatorCalendarController();
+
+            fxmlLoader.setController(calendarController);
+            AnchorPane debtSetup = fxmlLoader.load();
+            AnchorPane anchorPane = new AnchorPane();
+            AnchorPane.setTopAnchor(debtSetup, 0.0);
+            AnchorPane.setLeftAnchor(debtSetup, 0.0);
+            AnchorPane.setRightAnchor(debtSetup, 0.0);
+            AnchorPane.setBottomAnchor(debtSetup, 0.0);
+
+            anchorPane.getChildren().add(debtSetup);
+            Tab tabDebt = new Tab();
+
+            tabDebt.setText("calendar");
+            tabDebt.setContent(anchorPane);
+            tpWindowContainer.setTabMinWidth(160);
+            tpWindowContainer.setTabMaxWidth(160);
+            tpWindowContainer.getTabs().addAll(tabDebt);
+            tpWindowContainer.setVisible(true);
+
+
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void shoListDebt(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(BasicApplicationController.class.getResource("/ru/zhukov/recoverdebt/debt/DebtView.fxml"));
+            //fxmlAppLoader.setResources(ResourceBundle.getBundle("Application", new Locale("ru","RU")));
+            DebtController debtController = new DebtController();
+
+            fxmlLoader.setController(debtController);
+            AnchorPane debtSetup = fxmlLoader.load();
+            AnchorPane anchorPane = new AnchorPane();
+            AnchorPane.setTopAnchor(debtSetup, 0.0);
+            AnchorPane.setLeftAnchor(debtSetup, 0.0);
+            AnchorPane.setRightAnchor(debtSetup, 0.0);
+            AnchorPane.setBottomAnchor(debtSetup, 0.0);
+
+            anchorPane.getChildren().add(debtSetup);
+            Tab tabDebt = new Tab();
+
+            tabDebt.setText("debt");
+            tabDebt.setContent(anchorPane);
+            tpWindowContainer.setTabMinWidth(160);
+            tpWindowContainer.setTabMaxWidth(160);
+            tpWindowContainer.getTabs().addAll(tabDebt);
+            tpWindowContainer.setVisible(true);
+
+
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
 
     }
 

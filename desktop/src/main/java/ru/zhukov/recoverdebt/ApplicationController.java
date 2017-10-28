@@ -94,6 +94,9 @@ public class ApplicationController {
             stage.getIcons().add(new Image(getClass().getResource("/ru/zhukov/recoverdebt/assests/image/proforma-to_employee.png").toExternalForm()));
             Scene scene = new Scene(app);
             //stage.setTitle(String.format("РџРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С… РёР· РђРёРў - %s",nameEnterprise));
+          /*  stage.setOnShown(e->{
+                baseWindowController.shoListDebt();
+            });*/
 
             stage.setScene(scene);
             stage.show();

@@ -55,25 +55,17 @@
       
               <Menu mnemonicParsing="false" text="%menu.title.action">
                 <items>
-                  <MenuItem fx:id="miCreateAccountRecord" mnemonicParsing="false" text="%menu.title.createaccount" />
-                  <MenuItem fx:id="miExportAccountRecord" mnemonicParsing="false" text="%menu.title.exportaccount" />
                    <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="miDeleteRecord" disable="true" mnemonicParsing="false" text="%menu.title.delete" />
                    <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="miCreateFile" disable="true" mnemonicParsing="false" text="%menu.title.createFile" />
-                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="miCreateFileTransferTo1C" disable="false" mnemonicParsing="false" text="%menu.title.action.createFileTo1C" />
+
                 </items>
       
       
               </Menu>
               <Menu mnemonicParsing="false" text="%menu.title.helper">
                 <items>
-                  <MenuItem fx:id="miCostHelper" mnemonicParsing="false" text="%menu.title.helpcost" />
-                  <MenuItem fx:id="miDepartmentSetup" mnemonicParsing="false" text="%menu.title.helpdepartment" />
-                  <MenuItem fx:id="miAccountHelper" mnemonicParsing="false" text="%menu.title.helpaccount" />
-                  <SeparatorMenuItem mnemonicParsing="false"/>
-                  <MenuItem fx:id="miAccountInPay" mnemonicParsing="false" text="%menu.title.helpaccountTarif%"/>
+
                 </items>
               </Menu>
       
