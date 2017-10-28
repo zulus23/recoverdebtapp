@@ -17,11 +17,12 @@ public class ApplicationController {
     public void createLoginWindow(){
         try {
 
-            FXMLLoader fxmlLoginLoader = new FXMLLoader(ApplicationController.class.getResource("login/LoginView.fxml"));
+            FXMLLoader fxmlLoginLoader = new FXMLLoader(ApplicationController.class.getResource("/ru/zhukov/recoverdebt/login/LoginView.fxml"));
             LoginController loginController = new LoginController(applicationController);
             fxmlLoginLoader.setController(loginController);
+
             AnchorPane login = fxmlLoginLoader.load();
-            //fx:controller="ru.zhukov.login.LoginController"
+            //fx:controller="ru.zhukov.ru.zhukov.recoverdebt.login.LoginController"
             ///  loginController.setMainController(applicationController);
 
 
@@ -37,5 +38,8 @@ public class ApplicationController {
         }catch(IOException ex){
             ex.printStackTrace();
         }
+    }
+    public static ApplicationController Instance(){
+        return  applicationController;
     }
 }
