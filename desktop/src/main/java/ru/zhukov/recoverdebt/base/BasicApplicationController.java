@@ -11,11 +11,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import org.controlsfx.control.MaskerPane;
+import org.controlsfx.control.StatusBar;
 import ru.zhukov.recoverdebt.action.Action;
 import ru.zhukov.recoverdebt.calendar.InvestigatorCalendarController;
 import ru.zhukov.recoverdebt.debt.DebtController;
+import ru.zhukov.recoverdebt.share.ApplicationMediator;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,46 +39,23 @@ public class BasicApplicationController implements Initializable {
 
     @FXML
     private ToolBar tToolBar;
+    @FXML
+    private BorderPane borderPane;
 
     @FXML
     private MenuItem miExit;
     @FXML
-    private MenuItem miNewDocument;
+    private MenuItem miDebtList;
 
+    @FXML
+    private MenuItem miCalendar;
     @FXML
     private MenuItem miPreferences;
     @FXML
     private MenuItem miPrintDocument;
 
-
-
-
-
-
-    @FXML
-    private MenuItem miDeleteRecord;
-
     @FXML
     private MenuItem miClose;
-
-    /* ------- Справочники -----------*/
-    @FXML
-    private MenuItem miCostHelper;
-    @FXML
-    private MenuItem miDepartmentSetup;
-    @FXML
-    private MenuItem miAccountHelper;
-
-    @FXML
-    private MenuItem miAccountInPay;
-
-    /* ----------------------------- */
-
-    /* ------------ Action ---------*/
-    @FXML
-    private MenuItem miCreateFileTransferTo1C;
-
-
 
 
     @FXML
@@ -85,26 +66,20 @@ public class BasicApplicationController implements Initializable {
     @FXML
     StackPane stackPane;
 
-
-
     private Tab currentTab;
     private ProgressBar progressBarCreateAccountRecord;
 
-
-
-
-    private int month;
-    private int year;
-
-/*    private CurrentUser currentUser;*/
+    private StatusBar statusBar;
 
     private MaskerPane masker;
 
     private Locale localeApplication;
 
+    private ApplicationMediator applicationMediator;
 
-    public BasicApplicationController(){
+    public BasicApplicationController(ApplicationMediator applicationMediator){
         localeApplication = new Locale("ru","RU");
+        this.applicationMediator = applicationMediator;
 
         masker = new MaskerPane();
         masker.setVisible(false);
@@ -115,8 +90,12 @@ public class BasicApplicationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
         this.resourceBundle = resources;
-        miNewDocument.setOnAction(this::OpenCalendar);
+        //miDebtList.setOnAction(this::OpenCalendar);
+        miDebtList.setOnAction((e)->shoListDebt());
+        miCalendar.setOnAction(this::OpenCalendar);
+        miCalendar.setAccelerator(KeyCombination.keyCombination("Ctrl+C"));
         miExit.setOnAction(Action::exit);
         miExit.setAccelerator(KeyCombination.keyCombination("Ctrl+F4"));
         //miNewDocument.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/assests/image16/document.png").toExternalForm())));
@@ -124,12 +103,33 @@ public class BasicApplicationController implements Initializable {
         miPrintDocument.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/recoverdebt/assests/image16/document-print.png").toExternalForm())));
         //tToolBar.getItems().add(exitButton);
 
+        Button debtViewShow = new Button();
+        debtViewShow.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/recoverdebt/assests/image32/listdebt.png").toExternalForm())));
+        debtViewShow.setTooltip(new Tooltip("Показать список должников"));
+        debtViewShow.setOnAction((e)->shoListDebt());
+        Button calendarShow = new Button();
+        calendarShow.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/recoverdebt/assests/image32/calendar.png").toExternalForm())));
+        calendarShow.setTooltip(new Tooltip("Показать календарь"));
+        calendarShow.setOnAction(this::OpenCalendar);
 
+        Button addCommentButton = new Button();
+        addCommentButton.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/recoverdebt/assests/image32/document_note-add.png").toExternalForm())));
+        addCommentButton.setTooltip(new Tooltip("Добавить комментарии"));
+        //addCommentButton.setAccelerator(KeyCombination.keyCombination("Ctrl+F4"));
+        //addCommentButton.setOnAction(this::OpenCalendar);
+
+
+        tToolBar.getItems().add(debtViewShow);
         tToolBar.getItems().add(new Separator(Orientation.VERTICAL));
+        tToolBar.getItems().add(addCommentButton);
+        tToolBar.getItems().add(new Separator(Orientation.VERTICAL));
+        tToolBar.getItems().add(calendarShow);
 
+        statusBar = new StatusBar();
+
+        this.borderPane.setBottom(statusBar);
 
        // tToolBar.getItems().add(new Separator(Orientation.VERTICAL));
-
 
             shoListDebt();
 

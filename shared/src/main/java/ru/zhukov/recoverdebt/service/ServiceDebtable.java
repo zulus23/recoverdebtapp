@@ -28,9 +28,27 @@ public interface ServiceDebtable {
         debtObject.setBirthdayBorrower(LocalDate.of(1970,6,12));
         debtObject.setRosp("Мценский РОСП");
         debtObject.setSpi("Овчинникова Лариса Владимировна");
+        debtObject.setLastComment("Позвонить домой");
 
 
-        return Arrays.asList(debtObject);
+        DebtObject debtObject1 =  new DebtObject();
+        debtObject1.setBorrower("Морнева Людмила Николаевна");
+        debtObject1.setInvestigator("ЦАФ");
+        debtObject1.setStatus(TypeDebt.COURT.toString());
+        debtObject1.setDateBeginWork(LocalDate.of(2017,10,20));
+        debtObject1.setSummaDebt(new BigDecimal("52257.46"));
+        debtObject1.setSummaDebtCommin(new BigDecimal("0"));
+        debtObject1.setSummaDebtRemain(new BigDecimal("52257.46"));
+        debtObject1.setAddressRegistration("г. Орел, ул. Маринченко, д. 2, кв.49");
+        debtObject1.setAddressLive("г. Орел, ул. Маринченко, д. 2, кв.49");
+        debtObject1.setNumberEnforceProceed("");
+
+        debtObject1.setRosp("Северный РОСП");
+        debtObject1.setSpi("Егорова А.А.");
+        debtObject1.setLastComment("Позвонить соседям");
+
+
+        return Arrays.asList(debtObject,debtObject1);
     }
 
 

@@ -7,10 +7,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="mainWindow" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="mainWindow" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
   <StackPane fx:id="stackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
   <children>
@@ -21,14 +22,8 @@
             <menus>
               <Menu mnemonicParsing="false" text="%menu.title.file">
                 <items>
-                  <MenuItem fx:id="miNewDocument" mnemonicParsing="false" text="%menu.title.new" />
-                  <MenuItem mnemonicParsing="false" text="%menu.title.open" />
-                  <Menu mnemonicParsing="false" text="Open Recent" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="miClose" mnemonicParsing="false" text="%menu.title.close" />
-                  <MenuItem mnemonicParsing="false" text="%menu.title.save" />
-                  <MenuItem mnemonicParsing="false" text="Save As…" />
-                  <MenuItem mnemonicParsing="false" text="Revert" />
+                  <MenuItem fx:id="miDebtList" mnemonicParsing="false" text="%menu.title.showListDebt" />
+                  <MenuItem fx:id="miCalendar" mnemonicParsing="false" text="%menu.title.calendarShow" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="miPrintDocument" mnemonicParsing="false" text="%menu.title.print" />
                   <SeparatorMenuItem mnemonicParsing="false" />
@@ -38,37 +33,9 @@
                 </items>
               </Menu>
 
-             <!-- <Menu mnemonicParsing="false" text="Edit">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="Undo" />
-                  <MenuItem mnemonicParsing="false" text="Redo" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Cut" />
-                  <MenuItem mnemonicParsing="false" text="Copy" />
-                  <MenuItem mnemonicParsing="false" text="Paste" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Select All" />
-                  <MenuItem mnemonicParsing="false" text="Unselect All" />
-                </items>
-              </Menu>-->
       
-              <Menu mnemonicParsing="false" text="%menu.title.action">
-                <items>
-                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="miDeleteRecord" disable="true" mnemonicParsing="false" text="%menu.title.delete" />
-                   <SeparatorMenuItem mnemonicParsing="false" />
 
-                </items>
-      
-      
-              </Menu>
-              <Menu mnemonicParsing="false" text="%menu.title.helper">
-                <items>
 
-                </items>
-              </Menu>
-      
       
               <Menu mnemonicParsing="false" text="%menu.title.help">
                 <items>
@@ -80,13 +47,23 @@
             <ToolBar fx:id="tToolBar" prefHeight="40.0" prefWidth="200.0">
 
       </ToolBar>
-          <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+          <AnchorPane fx:id="bottomAnchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TabPane fx:id="tpWindowContainer" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <BorderPane fx:id="borderPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <center>
+                              <TabPane fx:id="tpWindowContainer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" >
+                               <tabs>
+
+                               </tabs>
+                              </TabPane>
+                           </center>
+                        </BorderPane>
+                  <!--<TabPane fx:id="tpWindowContainer" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <tabs>
 
                </tabs>
-                  </TabPane>
+                  </TabPane>-->
+
                </children>
           </AnchorPane>
         </children>

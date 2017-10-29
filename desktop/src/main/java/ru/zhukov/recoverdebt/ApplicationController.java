@@ -9,18 +9,34 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ru.zhukov.recoverdebt.action.Action;
 import ru.zhukov.recoverdebt.base.BasicApplicationController;
+import ru.zhukov.recoverdebt.domain.CurrentUser;
 import ru.zhukov.recoverdebt.login.LoginController;
+import ru.zhukov.recoverdebt.service.AuthenticationService;
+import ru.zhukov.recoverdebt.service.AuthenticationServiceInMemory;
+import ru.zhukov.recoverdebt.share.ApplicationMediator;
 
 
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
 
 public class ApplicationController {
     private static final ApplicationController applicationController = new ApplicationController();
 
+
+
     private LoginController loginController;
     private BasicApplicationController baseWindowController;
+
+    private ApplicationMediator applicationMediator;
+
+    //private CurrentUser currentUser;
+
+
+    private  ApplicationController() {
+
+    }
 
     public void createLoginWindow(){
         try {
@@ -47,46 +63,44 @@ public class ApplicationController {
             ex.printStackTrace();
         }
     }
+
     public static ApplicationController Instance(){
         return  applicationController;
     }
 
     public void authentication(String username, String password){
-/*        DBAuthenticationService dbAuthenticationService = new DBAuthenticationService();*/
-
-        /*dbAuthenticationService.authentication(username,password,database)
-
-                .handleAsync((user,ex)->{
-                    if(user==null){
-                        Platform.runLater(()-> exceptionReporter(new SQLException("РћС€РёР±РєР° РёРґРµРЅС‚РёС„РёРєР°С†РёРё.\nРџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·.")));
-                    } else{
-                        currentUser = (CurrentUser) user;
-*/
-                        Platform.runLater(()->{this.createApplicationWindow();loginController.close();});
-  /*                  }
-                    return "";
-
-                }).exceptionally(this::exceptionReporter);
-
-  */      //Platform.runLater(()->this.createApplicationWindow());
+        AuthenticationService authenticationService = new AuthenticationServiceInMemory();
 
 
+        authenticationService.authentication(username,password.toCharArray())
+                         .whenComplete((user,ex)-> {
+                             if (!user.isPresent()) {
+                                 Platform.runLater(() -> { this.exceptionReporter(new RuntimeException("Ошибка доступа к БД"));});
+                             } else {
+                                 Platform.runLater(() -> {
+                                     applicationMediator = new ApplicationMediator(user.get());
+                                     this.createApplicationWindow();
+                                     loginController.close();
+                                 });
 
 
+                             }
 
+                         });
     }
 
     private void createApplicationWindow() {
         try {
             FXMLLoader fxmlAppLoader = new FXMLLoader(ApplicationController.class.getResource("/ru/zhukov/recoverdebt/base/BasicApplicationView.fxml"));
             fxmlAppLoader.setResources(ResourceBundle.getBundle("Application", new Locale("ru","RU")));
-            baseWindowController = new BasicApplicationController();
+            baseWindowController = new BasicApplicationController(applicationMediator);
 
             fxmlAppLoader.setController(baseWindowController);
             AnchorPane app = fxmlAppLoader.load();
             Stage stage = new Stage();
             stage.setOnCloseRequest(Action::exit);
             stage.initOwner(null);
+            stage.setTitle(applicationMediator.getCurrentUser().getName());
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setMinWidth(800);
             stage.setMinHeight(400);
@@ -107,5 +121,9 @@ public class ApplicationController {
 
     }
 
+    public RuntimeException exceptionReporter(Throwable t) {
+        loginController.setTextError(t.getMessage());
+        return new RuntimeException(t);
+    }
 
 }

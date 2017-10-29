@@ -31,6 +31,7 @@ public class DebtObject {
     private LocalDate dateCourt;
     private String numberCourtProceed;
     private String descriptionCourt;
+    private String lastComment;
 
 
 
