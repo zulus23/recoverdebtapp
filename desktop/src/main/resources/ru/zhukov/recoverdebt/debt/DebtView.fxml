@@ -17,19 +17,19 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <TableView layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="tableDebt" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Должник" />
-                                  <TableColumn prefWidth="75.0" text="Взыскатель" />
-                                    <TableColumn prefWidth="75.0" text="Статус" />
-                                    <TableColumn prefWidth="75.0" text="Дата начала работы" />
-                                    <TableColumn prefWidth="75.0" text="Сумма долга входящая" />
-                                    <TableColumn prefWidth="75.0" text="Сумма платежей с начала периода" />
-                                    <TableColumn prefWidth="75.0" text="Остаток" />
-                                    <TableColumn prefWidth="75.0" text="Адрес регистрации" />
-                                    <TableColumn prefWidth="75.0" text="Адрес проживания" />
-                                    <TableColumn prefWidth="75.0" text="Номер ИП" />
-                                    <TableColumn prefWidth="75.0" text="Дата возбуждения ИП" />
+                                  <TableColumn fx:id="borrower" prefWidth="75.0" text="Должник" />
+                                  <TableColumn fx:id="investigator" prefWidth="75.0" text="Взыскатель" />
+                                    <TableColumn fx:id="status" prefWidth="75.0" text="Статус" />
+                                    <TableColumn fx:id="dateBeginWork" prefWidth="75.0" text="Дата начала работы" />
+                                    <TableColumn fx:id="summaDebt" prefWidth="75.0" text="Сумма долга входящая" />
+                                    <TableColumn fx:id="summaDebtCommin" prefWidth="75.0" text="Сумма платежей с начала периода" />
+                                    <TableColumn fx:id="summaDebtRemain" prefWidth="75.0" text="Остаток" />
+                                    <TableColumn fx:id="addressRegistration" prefWidth="75.0" text="Адрес регистрации" />
+                                    <TableColumn fx:id="addressLive" prefWidth="75.0" text="Адрес проживания" />
+                                    <TableColumn fx:id="numberEnforceProceed" prefWidth="75.0" text="Номер ИП" />
+                                    <TableColumn fx:id="dateBeginEnforceProceed" prefWidth="75.0" text="Дата возбуждения ИП" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
