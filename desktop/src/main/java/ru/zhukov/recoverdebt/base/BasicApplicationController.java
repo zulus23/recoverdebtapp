@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,11 +15,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.controlsfx.control.MaskerPane;
 import org.controlsfx.control.StatusBar;
 import ru.zhukov.recoverdebt.action.Action;
 import ru.zhukov.recoverdebt.calendar.InvestigatorCalendarController;
 import ru.zhukov.recoverdebt.debt.DebtController;
+import ru.zhukov.recoverdebt.setup.SetupController;
 import ru.zhukov.recoverdebt.share.ApplicationMediator;
 
 import java.io.IOException;
@@ -99,7 +103,8 @@ public class BasicApplicationController implements Initializable {
         miExit.setOnAction(Action::exit);
         miExit.setAccelerator(KeyCombination.keyCombination("Ctrl+F4"));
         //miNewDocument.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/assests/image16/document.png").toExternalForm())));
-        //miPreferences.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/assests/image16/application-gear.png").toExternalForm())));
+        miPreferences.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/recoverdebt/assests/image16/application-gear.png").toExternalForm())));
+        miPreferences.setOnAction(this::ShowPreference);
         miPrintDocument.setGraphic(new ImageView(new Image(getClass().getResource("/ru/zhukov/recoverdebt/assests/image16/document-print.png").toExternalForm())));
         //tToolBar.getItems().add(exitButton);
 
@@ -119,6 +124,7 @@ public class BasicApplicationController implements Initializable {
         //addCommentButton.setOnAction(this::OpenCalendar);
 
 
+
         tToolBar.getItems().add(debtViewShow);
         tToolBar.getItems().add(new Separator(Orientation.VERTICAL));
         tToolBar.getItems().add(addCommentButton);
@@ -134,6 +140,31 @@ public class BasicApplicationController implements Initializable {
             shoListDebt();
 
 
+
+    }
+
+    private void ShowPreference(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(BasicApplicationController.class.getResource("/ru/zhukov/recoverdebt/setup/SetupView.fxml"));
+            //fxmlAppLoader.setResources(ResourceBundle.getBundle("Application", new Locale("ru","RU")));
+            SetupController setupController = new SetupController();
+
+            fxmlLoader.setController(setupController)         ;
+            AnchorPane anchorPane = fxmlLoader.load();
+            Stage setupStage = new Stage();
+            setupStage.setTitle("Настройка программы");
+            setupStage.initModality(Modality.APPLICATION_MODAL);
+            setupStage.initOwner(this.mainWindow.getScene().getWindow());
+            Scene scene = new Scene(anchorPane);
+            setupStage.setResizable(false);
+            setupStage.setScene(scene);
+
+            setupStage.showAndWait();
+
+
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
 
     }
 

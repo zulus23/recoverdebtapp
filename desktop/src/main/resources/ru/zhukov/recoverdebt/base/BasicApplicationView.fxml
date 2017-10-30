@@ -27,7 +27,7 @@
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="miPrintDocument" mnemonicParsing="false" text="%menu.title.print" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="miPreferences" disable="true" mnemonicParsing="false" text="%menu.title.preferences" />
+                  <MenuItem fx:id="miPreferences"  mnemonicParsing="false" text="%menu.title.preferences" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="miExit" mnemonicParsing="false" text="%menu.title.quit" />
                 </items>

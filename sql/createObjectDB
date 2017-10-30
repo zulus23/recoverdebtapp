@@ -1,0 +1,37 @@
+CREATE  TABLE rdt_borrower (
+  id integer not null identity primary key,
+  name varchar(100) not null,
+  type INTEGER,
+  dateBirthday DATETIME2,
+  phoneNumber VARCHAR(50)
+)
+CREATE  TABLE  rdt_address(
+  id INTEGER NOT NULL identity PRIMARY KEY,
+  type INTEGER NOT NULL ,
+  idBorrower INTEGER not null,
+  postCode VARCHAR(50),
+  country VARCHAR(50),
+  region VARCHAR(50),
+  city VARCHAR(50),
+  street VARCHAR(50),
+  house VARCHAR(50),
+  appartment VARCHAR(50)
+
+
+)
+
+CREATE  TABLE  rdt_user (
+  id integer not null identity primary key,
+  username VARCHAR(20) not null,
+  password VARCHAR(50) not null
+)
+CREATE  TABLE  rdt_debt (
+  id BIGINT not null identity primary key,
+  idInvestigator INTEGER not null,
+  idBorrower INTEGER not null
+)
+
+CREATE  TABLE rdt_task(
+
+)
+
